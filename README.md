@@ -29,7 +29,10 @@ Models and related data for "Precision culturomics enabled by unlabeled single-c
 
 
 ## Model Weights
-The `model` directory contains the pre-trained model weights for the deep neural network and elastic net models. 
+The `models` directory contains the pre-trained model weights for the deep neural network and elastic net models. 
 
 ## Datasets
 The `data` directory contains single-cell morphological and spectral data.
+
+## Scripts
+The `scripts` directory contains scripts for data preprocessing.
