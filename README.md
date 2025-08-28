@@ -29,7 +29,7 @@ Models and related data for "Precision culturomics enabled by unlabeled single-c
 
 
 ## Model Weights
-The pre-trained model weights for the deep neural network and elastic net models are available on [figshare](https://figshare.com/s/02981a4786792ae9052f). 
+The pre-trained model weights for the deep neural network and elastic net models are available [here](https://figshare.com/s/02981a4786792ae9052f). Pre-computed reference feature database is available [here](https://figshare.com/s/10a4129ad516fbc710c7).
 
 ## Datasets
 The `data` directory contains single-cell morphological and spectral data.
