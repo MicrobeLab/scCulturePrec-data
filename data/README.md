@@ -1,9 +1,9 @@
-<img width="432" height="14" alt="image" src="https://github.com/user-attachments/assets/2a42c0ab-fb1f-42bd-b7a3-f535f241e876" /># Single-cell Morphological and Spectral Data
+# Morphological and Spectral Data
 
-All the morphological and spectral data are available on [figshare](https://figshare.com/s/260533c8d814c10e9c54). The morphological data are also provided in the `morphol` directory above. 
+- All the morphological and spectral data are available on [figshare](https://figshare.com/s/260533c8d814c10e9c54). The morphological data are also provided in the `morphol` directory above. 
 
-The columns in the morphological data tables, in order, are: area, width, length, aspect ratio, eccentricity, circularity, convexity, extent, perimeter, centroid. 
+- The columns in the morphological data tables, in order, are: area, width, length, aspect ratio, eccentricity, circularity, convexity, extent, perimeter, centroid. 
 
-The spectral data tables included integrated area (±10 cm-1) from 600 cm-1 to 3000 cm-1.
+- The spectral data tables included integrated area (±10 cm-1) from 600 cm-1 to 3000 cm-1.
 
-The `compound_spectra` directory contains Raman spectra of pure compounds, including DNA and RNA bases, amino acids, primary metabolites, cell wall components, and other key molecules in cells.
+- The `compound_spectra` directory contains Raman spectra of pure compounds, including DNA and RNA bases, amino acids, primary metabolites, cell wall components, and other key molecules in cells.
