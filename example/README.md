@@ -8,7 +8,6 @@ Step 1: Obtaining distances to reference samples
 scCulturePrec dl-model --fn test_input.npy --out test_output \
 --embed-size-spectra 128 --embed-size-morphol 128 --in_type both --input-dir example \
 --num-morphol 10 --weight /path/to/dnn_demo.pth --feat-db /path/to/features_demo.h5
-
 ```
 
 Step 2: Predicting whether the test samples belong to the same taxon as the reference samples
