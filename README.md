@@ -375,6 +375,6 @@ The pre-trained model weights for the deep neural network and elastic net models
 
 ## Other Resources
 
-An easy-to-use Python package implementing the machine learning framework presented in **Precision culturomics enabled by unlabeled single-cell morphology and Raman spectra** is available [here](https://github.com/MicrobeLab/scCulturePrec).
+An easy-to-use Python package implementing the machine learning framework presented in "Precision culturomics enabled by unlabeled single-cell morphology and Raman spectra" is available [here](https://github.com/MicrobeLab/scCulturePrec).
 
 The code for Raman spectral fitting and molecular quantification analysis is available [here](https://github.com/MicrobeLab/raman-molecular-quantification).
