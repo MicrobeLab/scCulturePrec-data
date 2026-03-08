@@ -136,14 +136,14 @@ python morphology.py image.tif box.txt output_prefix
 
 **Arguments:** 1. Input image path 2. Box coordinates file (from Step 1) 3. Output prefix for result files
 
-#### Example Output: `analysis_results_size.txt`
+**Example Output:**
 
     cell_number area    width   length  aspect_ratio    eccentricity    circularity extent  perimeter   centroid
     1   12.4567 1.2345  3.4567  2.8012  0.8567  0.7234  0.8912  8.9234  0.5678
     2   15.6789 1.4567  3.8901  2.6705  0.8234  0.7456  0.8567  10.1234 0.6789
     3   8.9012  1.1234  2.5678  2.2857  0.7890  0.8123  0.9234  7.3456  0.4567
 
-#### Scale Calibration
+**Scale Calibration**
 
 Default calibration in `morphology.py`:
 
@@ -151,13 +151,13 @@ Default calibration in `morphology.py`:
 um_per_px = 9 / 118  # 9 μm scale bar = 118 pixels
 ```
 
-**To customize:** Measure your scale bar in pixels and update:
+To customize: Measure your scale bar in pixels and update:
 
 ``` python
 um_per_px = actual_length_um / measured_pixels
 ```
 
-#### Box Coordinate Format
+**Box Coordinate Format**
 
 All box files use tab-separated values:
 
