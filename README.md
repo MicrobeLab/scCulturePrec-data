@@ -176,6 +176,152 @@ All box files use tab-separated values:
 
 ------------------------------------------------------------------------
 
+## Raman Spectral Preprocessing
+
+[![Python 3.6+](https://img.shields.io/badge/python-3.6+-blue.svg)](https://www.python.org/downloads/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Singularity](https://img.shields.io/badge/Singularity-3.0+-orange.svg)](https://sylabs.io/singularity/) [![SciPy](https://img.shields.io/badge/SciPy-1.5+-green.svg)](https://scipy.org/)
+
+Preprocessing pipeline for Raman spectra. This workflow handles quality control, interpolation, and integrated area calculation for downstream analysis.
+
+### Overview of the workflow
+
+1.  **Quality Control** - Cosmic ray removal → Smoothing → Baseline correction → Normalization SNR → filtering
+2.  **Interpolation** - Interpolation for resolution from 2 cm⁻¹ to 1 cm⁻¹
+3.  **Integrated Area calculation** - ±10 cm⁻¹ window integration
+
+Example input and output files are available [here](https://github.com/MicrobeLab/scCulturePrec-data/tree/main/spectral_analysis).
+
+### Installation
+
+#### Prerequisites
+
+``` bash
+# Install Singularity (if not already installed)
+# See: https://sylabs.io/guides/3.0/user-guide/installation.html
+```
+
+#### Download Preprocessing Container
+
+Download the Singularity image and shared object files from [Figshare](https://figshare.com/s/25c804e477f855e66cc8):
+
+#### Python Dependencies (for interpolation and integration)
+
+``` bash
+# Create conda environment
+conda create -n raman python=3.9 -y
+conda activate raman
+
+# Install dependencies
+conda install numpy scipy matplotlib -c conda-forge -y
+```
+
+### Workflow
+
+#### Step 1: Quality Control & Preprocessing (`raman_preprocessing.py`)
+
+Preprocesses raw Raman spectra using containerized algorithms for cosmic ray removal, baseline correction, and normalization.
+
+**Usage**
+
+``` bash
+singularity exec raman_preprocessing.sif \
+    python raman_preprocessing.py \
+    --input raw_spectrum.txt \
+    --output processed_spectrum.txt \
+    --start 400 \
+    --end 3600 \
+    --snr_min 2.0 \
+    --fix_norm
+```
+
+**Parameters**
+
+| Parameter        | Default  | Description                                                 |
+|------------------------|--------------------|----------------------------|
+| `--input`        | Required | Path to raw spectrum file (2-column: wavenumber, intensity) |
+| `--output`       | Required | Path to output preprocessed spectrum                        |
+| `--start`        | 400      | Start wavenumber (cm⁻¹)                                     |
+| `--end`          | 3600     | End wavenumber (cm⁻¹)                                       |
+| `--silent_start` | 1800     | Start of silent region for SNR calculation (cm⁻¹)           |
+| `--silent_end`   | 2000     | End of silent region for SNR calculation (cm⁻¹)             |
+| `--snr_min`      | 2.0      | Minimum SNR threshold (spectra below this are discarded)    |
+| `--crr_fs`       | 9        | Cosmic ray removal filter size                              |
+| `--crr_df`       | 3        | Cosmic ray removal dynamic factor                           |
+| `--win_sg`       | 5        | Savitzky-Golay filter window size                           |
+| `--n_sg`         | 3        | Savitzky-Golay polynomial order                             |
+| `--airpls_lamb`  | 100      | airPLS lambda parameter (baseline smoothness)               |
+| `--airpls_iter`  | 15       | airPLS maximum iterations                                   |
+| `--fix_norm`     | False    | Use silent region normalization (recommended for cells)     |
+
+**Processing Pipeline**
+
+    Input Spectrum (400-3600 cm⁻¹)
+        │
+        ├──▶ Range Trimming (start-end)
+        │
+        ├──▶ Cosmic Ray Removal (CRR)
+        │       Adaptive filter with dynamic thresholding
+        │
+        ├──▶ Savitzky-Golay Smoothing
+        │       Polynomial fitting for noise reduction
+        │
+        ├──▶ airPLS Baseline Correction
+        │       Iterative reweighted least squares
+        │
+        ├──▶ Normalization
+        │       ├── Max-Min (default): 0-1 scaling
+        │       └── Fixed (with --fix_norm): Relative to silent region
+        │
+        └──▶ SNR Filtering
+                Signal range / Noise range (silent region) > snr_min
+
+#### Step 2: Interpolation (`interpolation.py`)
+
+Enhances spectral resolution using cubic spline interpolation from 2cm⁻¹ to 1 cm⁻¹.
+
+**Usage**
+
+``` bash
+python interpolation.py processed_spectrum.txt interpolated_spectrum.txt
+```
+
+#### Step 3: Integrated Area Calculation (`integrate_area.py`)
+
+Computes integrated area (Ia) over ±10 cm⁻¹ sliding windows. Adds uniform intensity offset to avoid integration on negative values.
+
+**Usage**
+
+``` bash
+python integrate_area.py <spectrum> <add_intensity> <output> <resolution>
+```
+
+**Arguments**
+
+| Argument        | Description                             | Typical Values                  |
+|-------------------|------------------------|-----------------------------|
+| `spectrum`      | Input spectrum file                     | `interpolated_spectrum.txt`     |
+| `add_intensity` | Uniform offset added to all intensities | See table below                 |
+| `output`        | Output integrated area file             | `ia_spectrum.txt`               |
+| `resolution`    | Spectral resolution (1 or 2)            | `1` (interpolated) or `2` (raw) |
+
+Intensity Offsets Adopted in Our Study:
+
+| Sample Type                          | `add_intensity` |
+|--------------------------------------|-----------------|
+| Pure compounds                   | `0`             |
+| Amino acid mixtures              | `0.1`           |
+| Cells (deep neural network)      | `0.2`           |
+| Cells (molecular quantification) | `0.1`           |
+
+> **Important**: Use consistent `add_intensity` values across all
+> spectra within the same analytical batch.
+
+**Example**
+
+``` bash
+# For cellular spectra (quantification)
+python integrate_area.py interpolated_spectrum.txt 0.1 ia_output.txt 1
+```
+
 
 
 
