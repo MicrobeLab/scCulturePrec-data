@@ -17,8 +17,7 @@ Scripts for extracting bacterial single-cell morphological features from microsc
 ### Overview of the workflow
 
 1.  **Box Detection** - Identify cell regions using either automated or manual methods
-2.  **Segmentation** - Generate cell masks using SAM with box prompts
-3.  **Morphological Analysis** - Extract quantitative morphological features
+2.  **Segmentation and Morphological Analysis** - Generate cell masks using SAM with box prompts and extract quantitative morphological features
 
 Example input and output files are available [here](https://github.com/MicrobeLab/scCulturePrec-data/tree/main/morphology_analysis).
 
@@ -85,7 +84,7 @@ sam_checkpoint = "/path/to/sam_vit_h_4b8939.pth"
 
 ### Usage
 
-#### Box Detection: Automatic Detection (`box_auto.py`)
+#### Step 1. Box Detection: Automatic Detection (`box_auto.py`)
 
 ``` bash
 python box_auto.py --input image.tif --output_dir output --prefix output_prefix \
@@ -114,7 +113,7 @@ python box_auto.py -i image.tif --exclude_y 0.03
 python box_auto.py -i image.tif --exclude_x 0.01
 ```
 
-#### Box Detection: Manual Selection (`box_manual.py`)
+#### Step 1. Box Detection: Manual Selection (`box_manual.py`)
 
 ``` bash
 python box_manual.py image.tif output/manual_boxes.txt
@@ -129,7 +128,7 @@ python box_manual.py image.tif output/manual_boxes.txt
 | Space             | Skip current cell (assigns index only) |
 | Close Window      | Save and exit                          |
 
-#### Morphological Analysis (`morphology.py`)
+#### Step 2. Morphological Analysis (`morphology.py`)
 
 ``` bash
 python morphology.py image.tif box.txt output_prefix
