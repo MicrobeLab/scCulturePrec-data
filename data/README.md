@@ -4,4 +4,4 @@
 
 - The columns in the morphological data tables, in order, are: area, width, length, aspect ratio, eccentricity, circularity, convexity, extent, perimeter, centroid. 
 
-- The spectral data tables included integrated area (±10 cm-1) from 600 cm-1 to 3000 cm-1.
+- The spectral data tables included integrated area (±10 cm<sup>-1</sup>) from 600 cm<sup>-1</sup> to 3000 cm<sup>-1</sup>.
