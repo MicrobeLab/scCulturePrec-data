@@ -5,5 +5,3 @@
 - The columns in the morphological data tables, in order, are: area, width, length, aspect ratio, eccentricity, circularity, convexity, extent, perimeter, centroid. 
 
 - The spectral data tables included integrated area (±10 cm-1) from 600 cm-1 to 3000 cm-1.
-
-- The `compound_spectra` directory contains Raman spectra of pure compounds, including DNA and RNA bases, amino acids, primary metabolites, cell wall components, and other key molecules in cells.
