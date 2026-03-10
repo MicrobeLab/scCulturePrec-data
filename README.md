@@ -90,7 +90,7 @@ sam_checkpoint = "/path/to/sam_vit_h_4b8939.pth"
 
 ### Usage
 
-#### Step 1. Box Detection: Automatic Detection (`box_auto.py`)
+#### Step 1. Box Detection: Automatic Detection ([box_auto.py](https://github.com/MicrobeLab/scCulturePrec-data/blob/main/scripts/box_auto.py))
 
 ``` bash
 python box_auto.py --input image.tif --output_dir output --prefix output_prefix \
@@ -119,7 +119,7 @@ python box_auto.py -i image.tif --exclude_y 0.03
 python box_auto.py -i image.tif --exclude_x 0.01
 ```
 
-#### Step 1. Box Detection: Manual Selection (`box_manual.py`)
+#### Step 1. Box Detection: Manual Selection ([box_manual.py](https://github.com/MicrobeLab/scCulturePrec-data/blob/main/scripts/box_manual.py))
 
 ``` bash
 python box_manual.py image.tif output/manual_boxes.txt
@@ -134,7 +134,7 @@ python box_manual.py image.tif output/manual_boxes.txt
 | Space             | Skip current cell (assigns index only) |
 | Close Window      | Save and exit                          |
 
-#### Step 2. Morphological Analysis (`morphology.py`)
+#### Step 2. Morphological Analysis ([morphology.py](https://github.com/MicrobeLab/scCulturePrec-data/blob/main/scripts/morphology.py))
 
 ``` bash
 python morphology.py image.tif box.txt output_prefix
@@ -222,7 +222,7 @@ conda install numpy scipy matplotlib -c conda-forge -y
 
 ### Workflow
 
-#### Step 1: Quality Control & Preprocessing (`raman_preprocessing.py`)
+#### Step 1: Quality Control & Preprocessing ([raman_preprocessing.py](https://github.com/MicrobeLab/scCulturePrec-data/blob/main/scripts/raman_preprocessing.py))
 
 Preprocesses raw Raman spectra using containerized algorithms for cosmic ray removal, baseline correction, and normalization.
 
@@ -280,7 +280,7 @@ singularity exec raman_preprocessing.sif \
         └──▶ SNR Filtering
                 Signal range / Noise range (silent region) > snr_min
 
-#### Step 2: Interpolation (`interpolation.py`)
+#### Step 2: Interpolation ([interpolation.py](https://github.com/MicrobeLab/scCulturePrec-data/blob/main/scripts/interpolation.py))
 
 Enhances spectral resolution using cubic spline interpolation from 2cm⁻¹ to 1 cm⁻¹.
 
@@ -290,7 +290,7 @@ Enhances spectral resolution using cubic spline interpolation from 2cm⁻¹ to 1
 python interpolation.py processed_spectrum.txt interpolated_spectrum.txt
 ```
 
-#### Step 3: Integrated Area Calculation (`integrate_area.py`)
+#### Step 3: Integrated Area Calculation ([integrate_area.py](https://github.com/MicrobeLab/scCulturePrec-data/blob/main/scripts/integrate_area.py))
 
 Computes integrated area (Ia) over ±10 cm⁻¹ sliding windows. Adds uniform intensity offset to avoid integration on negative values.
 
