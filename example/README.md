@@ -1,6 +1,6 @@
 # Example
 
-**Prerequisites**: Please ensure [scCulturePrec](https://github.com/MicrobeLab/scCulturePrec) is installed before use. `dnn_demo.pth` is provided on [figshare](https://figshare.com/s/02981a4786792ae9052f).
+**Prerequisites**: Please ensure [scCulturePrec](https://github.com/MicrobeLab/scCulturePrec) is installed before use. `dnn_demo.pth` is provided on [figshare](https://doi.org/10.6084/m9.figshare.30000025).
 
 Step 1: Obtaining distances to reference samples
 
