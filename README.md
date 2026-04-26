@@ -368,7 +368,7 @@ The `data` directory contains single-cell morphological and spectral data. These
 
 ### Model Weights
 
-The pre-trained model weights for the deep neural network and elastic net models are available [here](https://figshare.com/s/02981a4786792ae9052f). Pre-computed reference feature database is available [here](https://figshare.com/s/10a4129ad516fbc710c7).
+The pre-trained model weights for the deep neural network and elastic net models are available [here](https://doi.org/10.6084/m9.figshare.30000025). Pre-computed reference feature database is available [here](https://doi.org/10.6084/m9.figshare.30001300).
 
 
 ------------------------------------------------------------------------
