@@ -207,7 +207,7 @@ Example input and output files are available [here](https://github.com/MicrobeLa
 
 #### Download Preprocessing Container
 
-Download the Singularity image and shared object files from [Figshare](https://figshare.com/s/25c804e477f855e66cc8):
+Download the Singularity image and shared object files from [Figshare](https://doi.org/10.6084/m9.figshare.30685223):
 
 #### Python Dependencies (for interpolation and integration)
 
