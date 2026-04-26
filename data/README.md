@@ -5,6 +5,7 @@
 - The columns in the morphological data tables, in order, are: area, width, length, aspect ratio, eccentricity, circularity, convexity, extent, perimeter, centroid. 
 
 - The spectral data tables included integrated area (±10 cm<sup>-1</sup>) from 600 cm<sup>-1</sup> to 3000 cm<sup>-1</sup>.
+- Data are provided as NumPy arrays, with each array containing samples from one taxon. The [scCulturePrec](https://github.com/MicrobeLab/scCulturePrec) Python package can be used to load and format the data for model training. See the [documentation](https://github.com/MicrobeLab/scCulturePrec/blob/main/README.md) for detailed instructions.
 
-## Data Format
-Data are provided as NumPy arrays, with each array containing samples from one taxon, shaped as `[number_of_samples, number_of_features]`. The [`scCulturePrec`](https://github.com/MicrobeLab/scCulturePrec) Python package can be used to load and format the data for model training.
+
+
